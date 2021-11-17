@@ -95,9 +95,9 @@ fi
 
 # nRF Connect SDK related actions
 if [ "${REFERENCE_PLATFORM?}" = "ncs" ]; then
-  apt-get install -y --no-install-recommends vim wiringpi
-  pip install wrapt==1.12.1
-  pip install nrfutil
+  apt-get install -y --no-install-recommends vim wiringpi libusb-1.0-0-dev sed
+  pip3 install wrapt==1.12.1 click crcmod ecdsa intelhex libusb1 piccata protobuf pyserial pyyaml tqdm pc_ble_driver_py pyspinel
+  pip3 install --no-dependencies nrfutil==6.0.1
 
   # add calling of link_dongle.py script at startup to update symlink to the dongle
   sed -i '/exit 0/d' /etc/rc.local
