@@ -296,6 +296,9 @@ deploy_ncs()
     west update -n -o=--depth=1
     cd ..
 
+    # Temporary workaround for misconfiguration with SPINEL logging
+    sed -i 's/^\(\s*depends on \)NET_L2_OPENTHREAD/\1OPENTHREAD/' zephyr/subsys/logging/backends/Kconfig.spinel
+
     if [[ -n ${OPENTHREAD_COMMIT_HASH:=} ]]; then
         echo "Using custom OT SHA: ${OPENTHREAD_COMMIT_HASH?}"
         cd modules/lib/openthread
